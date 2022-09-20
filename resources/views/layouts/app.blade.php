@@ -24,7 +24,7 @@
                         @auth
                             <form id="logout" method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <a role="button" class="nav-link active"
+                                <a role="button" class="nav-link active bg-dark"
                                     onclick="document.getElementById('logout').submit()">Logout</a>
                             </form>
                         @endauth

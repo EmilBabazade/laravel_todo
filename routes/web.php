@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('todos.todos');
+Route::middleware('authTodos')->group(function () {
+    Route::get('/', function () {
+        return view('todos.todos');
+    });
 });
 
 Auth::routes();
