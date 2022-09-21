@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('authTodos')->group(function () {
-    Route::get('/', function () {
-        return view('todos.todos');
-    });
+    Route::get('/', 'App\Http\Controllers\TodoController@index')->name('todos.todos');
 });
 
 Auth::routes();
