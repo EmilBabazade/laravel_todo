@@ -3,6 +3,7 @@
     {{ $viewData['title'] }}
 @endsection
 @section('content')
+    <a href="" class="btn btn-primary">Add Todo</a>
     <table class="table">
         <thead>
             <tr>
