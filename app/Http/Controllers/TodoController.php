@@ -93,7 +93,7 @@ class TodoController extends Controller
      */
     public function deleteTodo(int $id)
     {
-        Todo::destroy($id);
+        Todoy::destroy($id);
         return back();
     }
 }
