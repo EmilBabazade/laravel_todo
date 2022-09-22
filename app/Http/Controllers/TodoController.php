@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Todo;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\Debugbar\Facade as Debugbar;
 
 class TodoController extends Controller
 {
@@ -26,10 +27,35 @@ class TodoController extends Controller
     /**
      * Show the todo create page.
      */
+    public function newTodoPage()
+    {
+        $viewData = [];
+        $viewData['title'] = 'Add Todo';
+        return view('todos.newTodo')->with('viewData', $viewData);
+    }
 
     /**
      * Show the todo update page.
      */
+    public function newTodo(Request $request) {
+        $request->validate([
+            "title" => "required|max:255",
+            "due_date" => "required",
+            // "done" => "required",
+        ]);
+
+        $userId = Auth::id();
+
+        $newTodo = new Todo();
+        Debugbar::info($request->input('title'));
+        $newTodo->title = $request->input('title');
+        $newTodo->due_date = $request->input('due_date');
+        $newTodo->done = false;
+        $newTodo->user_id = $userId;
+        $newTodo->save();
+
+        return redirect()->route('todos.todos');
+    }
 
     /**
      * Create a new todo.

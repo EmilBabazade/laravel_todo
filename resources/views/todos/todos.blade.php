@@ -3,7 +3,7 @@
     {{ $viewData['title'] }}
 @endsection
 @section('content')
-    <a href="" class="btn btn-primary">Add Todo</a>
+    <a href="{{ route('todos.newTodoPage') }}" class="btn btn-primary">Add Todo</a>
     <table class="table">
         <thead>
             <tr>
@@ -20,18 +20,30 @@
                     <td>{{ $task->id }}</td>
                     <td>{{ $task->title }}</td>
                     <td>{{ $task->due_date }}</td>
-                    <td>{{ $task->done }}</td>
                     <td>
-                        <a class="btn btn-primary mb-2" href="#">
-                            <i class="bi-pencil"></i>
-                        </a>
-                        <form action="" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger">
-                                <i class="bi-trash"></i>
-                            </button>
-                        </form>
+                        @if ($task->done == 1)
+                            <span class="text-success">
+                                <i class="bi bi-check2"></i>
+                            </span>
+                        @else
+                            <span class="text-danger">
+                                <i class="bi bi-exclamation-diamond"></i>
+                            </span>
+                        @endif
+                    </td>
+                    <td>
+                        <div class="d-flex">
+                            <a class="btn btn-primary mx-2" href="#">
+                                <i class="bi-pencil"></i>
+                            </a>
+                            <form action="" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger">
+                                    <i class="bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach

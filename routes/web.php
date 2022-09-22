@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('authTodos')->group(function () {
     Route::get('/', 'App\Http\Controllers\TodoController@index')->name('todos.todos');
+    Route::get('/newTodoPage', 'App\Http\Controllers\TodoController@newTodoPage')->name('todos.newTodoPage');
+    Route::post('/newTodo', 'App\Http\Controllers\TodoController@newTodo')->name('todos.addTodo');
 });
 
 Auth::routes();
