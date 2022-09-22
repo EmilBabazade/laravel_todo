@@ -15,10 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('authTodos')->group(function () {
     Route::get('/', 'App\Http\Controllers\TodoController@index')->name('todos.todos');
-    Route::get('/newTodoPage', 'App\Http\Controllers\TodoController@newTodoPage')->name('todos.newTodoPage');
+    Route::get('/newTodoPage', 'App\Http\Controllers\TodoController@newTodoPage')
+        ->name('todos.newTodoPage');
     Route::post('/newTodo', 'App\Http\Controllers\TodoController@newTodo')->name('todos.addTodo');
-    Route::get('/updateTodoPage/{id}', 'App\Http\Controllers\TodoController@updateTodoPage')->name('todos.updateTodoPage');
+    Route::get('/updateTodoPage/{id}', 'App\Http\Controllers\TodoController@updateTodoPage')
+        ->name('todos.updateTodoPage');
     Route::put('/updateTodo/{id}', 'App\Http\Controllers\TodoController@updateTodo')->name('todos.updateTodo');
+    Route::delete('/deleteTodo/{id}', 'App\Http\Controllers\TodoController@deleteTodo')
+        ->name('todos.deleteTodo');
 });
 
 Auth::routes();

@@ -38,7 +38,8 @@ class TodoController extends Controller
     /**
      * Show the todo update page.
      */
-    public function updateTodoPage(int $id) {
+    public function updateTodoPage(int $id)
+    {
         $viewData['todo'] = Todo::findOrFail($id);
         return view('todos.updateTodo')->with('viewData', $viewData);
     }
@@ -46,7 +47,8 @@ class TodoController extends Controller
     /**
      * Create a new todo.
      */
-    public function newTodo(Request $request) {
+    public function newTodo(Request $request)
+    {
         $request->validate([
             "title" => "required|max:255",
             "due_date" => "required",
@@ -68,7 +70,8 @@ class TodoController extends Controller
     /**
      * Update a todo.
      */
-    public function updateTodo(int $id, Request $request) {
+    public function updateTodo(int $id, Request $request)
+    {
         Debugbar::info($request);
         $request->validate([
             "title" => "required|max:255",
@@ -88,4 +91,9 @@ class TodoController extends Controller
     /**
      * Delete a todo.
      */
+    public function deleteTodo(int $id)
+    {
+        Todo::destroy($id);
+        return back();
+    }
 }

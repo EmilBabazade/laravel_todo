@@ -36,7 +36,7 @@
                             <a class="btn btn-primary mx-2" href="{{ route('todos.updateTodoPage', $task->id) }}">
                                 <i class="bi-pencil"></i>
                             </a>
-                            <form action="" method="POST">
+                            <form action="{{ route('todos.deleteTodo', $task->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger">
