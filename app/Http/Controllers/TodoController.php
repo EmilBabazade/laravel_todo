@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Todo;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\Debugbar\Facade as Debugbar;
+use DateTime;
 
 class TodoController extends Controller
 {
@@ -55,7 +56,6 @@ class TodoController extends Controller
         $userId = Auth::id();
 
         $newTodo = new Todo();
-        Debugbar::info($request->input('title'));
         $newTodo->title = $request->input('title');
         $newTodo->due_date = $request->input('due_date');
         $newTodo->done = false;
@@ -66,10 +66,26 @@ class TodoController extends Controller
     }
 
     /**
-     * Delete a todo.
+     * Update a todo.
      */
+    public function updateTodo(int $id, Request $request) {
+        Debugbar::info($request);
+        $request->validate([
+            "title" => "required|max:255",
+            "due_date" => "required"
+        ]);
+
+
+        $todo = Todo::findOrFail($id);
+        $todo->title = $request->input('title');
+        $todo->due_date = DateTime::createFromFormat('Y-m-d', $request->input('due_date'));
+        $todo->done = $request->input('done') == 'on' ? 1 : 0;
+        $todo->save();
+
+        return redirect()->route('todos.todos');
+    }
 
     /**
-     * Update a todo.
+     * Delete a todo.
      */
 }

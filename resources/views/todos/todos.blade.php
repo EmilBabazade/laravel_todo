@@ -7,7 +7,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Task No</th>
+                <th scope="col">Task Id</th>
                 <th scope="col">Task</th>
                 <th scope="col">Due Date</th>
                 <th scope="col">Done</th>

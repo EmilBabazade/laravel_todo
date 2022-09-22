@@ -17,8 +17,7 @@
                         </ul>
                     @endif
                     <div class="card-body">
-                        {{-- action="{{ route('todos.updateTodo') }}" --}}
-                        <form method="POST">
+                        <form method="POST" action="{{ route('todos.updateTodo', $viewData['todo']->id) }}">
                             @csrf
                             @method('PUT')
                             <div class="row mb-3">
@@ -55,7 +54,7 @@
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary text-white">
-                                        Create
+                                        Update
                                     </button>
                                 </div>
                             </div>
