@@ -37,6 +37,14 @@ class TodoController extends Controller
     /**
      * Show the todo update page.
      */
+    public function updateTodoPage(int $id) {
+        $viewData['todo'] = Todo::findOrFail($id);
+        return view('todos.updateTodo')->with('viewData', $viewData);
+    }
+
+    /**
+     * Create a new todo.
+     */
     public function newTodo(Request $request) {
         $request->validate([
             "title" => "required|max:255",
@@ -56,10 +64,6 @@ class TodoController extends Controller
 
         return redirect()->route('todos.todos');
     }
-
-    /**
-     * Create a new todo.
-     */
 
     /**
      * Delete a todo.

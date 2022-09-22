@@ -33,7 +33,7 @@
                     </td>
                     <td>
                         <div class="d-flex">
-                            <a class="btn btn-primary mx-2" href="#">
+                            <a class="btn btn-primary mx-2" href="{{ route('todos.updateTodoPage', $task->id) }}">
                                 <i class="bi-pencil"></i>
                             </a>
                             <form action="" method="POST">
